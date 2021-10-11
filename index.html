@@ -344,7 +344,7 @@ https://templatemo.com/tm-562-space-dynamic
     </div>
   </div> -->
 
-  <div id="contact" class="contact-us section">
+  <div id="contact-div" class="contact-us section">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 align-self-center wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay="0.25s">
@@ -392,6 +392,34 @@ https://templatemo.com/tm-562-space-dynamic
         </div>
       </div>
     </div>
+
+    <script>
+      const myform = document.getElementById("contact")
+      myform.addEventListener('submit',function(e){
+        e.preventDefault();
+        const formdata = new FormData(this);
+        console.log(formdata.get('name'))
+        fetch('https://pixilark-backend.herokuapp.com/sendmail',{
+          method:'post',
+          headers: {'Content-Type': 'application/json'},
+          body:JSON.stringify(
+            {
+            name:`${formdata.get('name')} ${formdata.get('surname')}`,
+            email:`${formdata.get('email')}`,
+            text:`${formdata.get('message')}`
+          }
+          )
+        }).then(function(response){
+          return response.json()
+        }).then(function(json){
+          console.log(json)
+        }).catch(function(error){
+          console.log(error)
+        })
+        
+      })
+    </script>
+
   </div>
 
   <footer>

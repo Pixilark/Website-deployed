@@ -383,18 +383,21 @@ https://templatemo.com/tm-562-space-dynamic
                 <fieldset>
                   <button type="submit" id="form-submit" class="main-button ">Send Message</button>
                 </fieldset>
+                <div id="response">.</div>
               </div>
             </div>
             <div class="contact-dec">
               <img src="assets/images/contact-decoration.png" alt="">
             </div>
           </form>
+          
         </div>
       </div>
     </div>
 
     <script>
       const myform = document.getElementById("contact")
+      var status = document.getElementById('response')
       myform.addEventListener('submit',function(e){
         e.preventDefault();
         const formdata = new FormData(this);
@@ -413,8 +416,10 @@ https://templatemo.com/tm-562-space-dynamic
           return response.json()
         }).then(function(json){
           console.log(json)
+          document.getElementById("response").innerHTML = "Mail Sent";
         }).catch(function(error){
           console.log(error)
+          document.getElementById("response").innerHTML = "Sorry there is some error";
         })
         
       })

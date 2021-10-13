@@ -184,3 +184,58 @@
   z-index: 1;
   height: 100%;
   width: 100%; }
+
+.Tie-Ups{
+  padding-left: 20px;
+  padding-right: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+.tie-up-header{
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color:#ff626d
+}
+
+.brands_container_main{
+  display:flex;
+  overflow:scroll;
+  height: 310px;
+  text-align: center;
+  justify-items: center;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff626d;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.Div_card{
+  height: 250px;
+  width: 250px;
+  min-height: 250px;
+  min-width: 250px;
+  background-size: cover;
+  border-radius: 50px;
+  text-align: center;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.card-img{
+  height: 100%;
+  border-radius: 50px;
+  
+}

@@ -64,6 +64,7 @@ https://templatemo.com/tm-562-space-dynamic
               <!-- <li class="scroll-to-section"><a href="#portfolio">Portfolio</a></li> -->
               <!-- <li class="scroll-to-section"><a href="#blog">Blog</a></li>  -->
               <li class="scroll-to-section"><a href="#contact">Message Us</a></li>
+              <li class="scroll-to-section"><a href="gallery.html">Gallery</a></li>
               <li class="scroll-to-section">
                 <div class="main-red-button"><a href="#contact">Contact Now</a></div>
               </li>
@@ -275,7 +276,7 @@ https://templatemo.com/tm-562-space-dynamic
     </div>
   </div> -->
 
-  <!-- <div id="blog" class="our-blog section">
+  <div id="blog" class="our-blog section">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.25s">
@@ -290,8 +291,8 @@ https://templatemo.com/tm-562-space-dynamic
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.25s">
-          <div class="left-image">
+        <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.25s" id="posts-list-left">
+          <!-- <div class="left-image">
             <a href="#"><img src="assets/images/big-blog-thumb.jpg" alt="Workspace Desktop"></a>
             <div class="info">
               <div class="inner-content">
@@ -300,32 +301,38 @@ https://templatemo.com/tm-562-space-dynamic
                   <li><i class="fa fa-users"></i> TemplateMo</li>
                   <li><i class="fa fa-folder"></i> Branding</li>
                 </ul>
-                <a href="#"><h4>SEO Agency &amp; Digital Marketing</h4></a>
+                <h4>SEO Agency Digital Marketing</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur and sed doer ket eismod tempor incididunt ut labore et dolore magna...</p>
                 <div class="main-blue-button">
                   <a href="#">Discover More</a>
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.25s">
           <div class="right-list">
-            <ul>
-              <li>
+            <ul id="right-post-cards-main-div">
+              <!-- <li>
                 <div class="left-content align-self-center">
                   <span><i class="fa fa-calendar"></i> 18 Mar 2021</span>
-                  <a href="#"><h4>New Websites &amp; Backlinks</h4></a>
+                  <a href="#">
+                    <h4>New Websites Backlinks</h4>
+                  </a>
                   <p>Lorem ipsum dolor sit amsecteturii and sed doer ket eismod...</p>
                 </div>
                 <div class="right-image">
                   <a href="#"><img src="assets/images/blog-thumb-01.jpg" alt=""></a>
                 </div>
-              </li>
-              <li>
+              </li> -->
+
+
+              <!-- <li>
                 <div class="left-content align-self-center">
                   <span><i class="fa fa-calendar"></i> 14 Mar 2021</span>
-                  <a href="#"><h4>SEO Analysis &amp; Content Ideas</h4></a>
+                  <a href="#">
+                    <h4>SEO Analysis &amp; Content Ideas</h4>
+                  </a>
                   <p>Lorem ipsum dolor sit amsecteturii and sed doer ket eismod...</p>
                 </div>
                 <div class="right-image">
@@ -335,19 +342,83 @@ https://templatemo.com/tm-562-space-dynamic
               <li>
                 <div class="left-content align-self-center">
                   <span><i class="fa fa-calendar"></i> 06 Mar 2021</span>
-                  <a href="#"><h4>SEO Tips &amp; Digital Marketing</h4></a>
+                  <a href="#">
+                    <h4>SEO Tips &amp; Digital Marketing</h4>
+                  </a>
                   <p>Lorem ipsum dolor sit amsecteturii and sed doer ket eismod...</p>
                 </div>
                 <div class="right-image">
                   <a href="#"><img src="assets/images/blog-thumb-01.jpg" alt=""></a>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
       </div>
     </div>
-  </div> -->
+  </div>
+  <Script>
+    fetch('./posts.json').then(function (response) {
+      return response.json()
+    }).then(function (dd) {
+      return dd.reverse()
+    })
+      .then(
+        function (data) {
+          let htmlData = `
+        <div class="left-image">
+            <a href="#"><img src=${data[0]['img']} alt="Workspace Desktop"></a>
+            <div class="info">
+              <div class="inner-content">
+                <ul>
+                  <li><i class="fa fa-calendar"></i> 24 Mar 2021</li>
+                  <li><i class="fa fa-users"></i> TemplateMo</li>
+                  <li><i class="fa fa-folder"></i> Branding</li>
+                </ul>
+                <h4>${data[0]['title']}</h4>
+                <p>${data[0]['shortDescription']}</p>
+                <div class="main-blue-button">
+                  <a href="#">Discover More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+          console.log(htmlData)
+          document.getElementById('posts-list-left').innerHTML = htmlData;
+          return data;
+        }
+      ).then(function (daata) {
+        let htmlData = ``;
+        let datalen=0;
+        if(daata.length>3){
+          datalen=3
+        }else{
+          datalen=data.length
+        }
+        for (let i = 0; i < datalen; i++) {
+          htmlData = htmlData + `
+        <li>
+                <div class="left-content align-self-center">
+                  <span><i class="fa fa-calendar"></i> 18 Mar 2021</span>
+                  <a href="#">
+                    <h4>${daata[i]['title']}</h4>
+                  </a>
+                  <p>${daata[i]['shortDescription']}</p>
+                </div>
+                <div class="right-image">
+                  <a href="#"><img src=${daata[i]['img']} alt=""></a>
+                </div>
+              </li>
+        `
+        
+        }
+        return htmlData
+      }).then(function(html){
+        console.log(html)
+        document.getElementById('right-post-cards-main-div').innerHTML=html;
+      })
+  </Script>
   <div class="Tie-Ups">
     <h1 class="tie-up-header">Tie-Up brands</h1>
     <div class="brands_container_main" id="cards_main_div">

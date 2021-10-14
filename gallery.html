@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-space-dynamic.css">
+  <link rel="stylesheet" href="assets/css/animated.css">
+  <link rel="stylesheet" href="assets/css/owl.css">
+  <link rel="stylesheet" href="assets/css/gallery.css">
+  <title>Pixilark Gallery</title>
+</head>
+<body>
+    <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <nav class="main-nav">
+                <!-- ***** Logo Start ***** -->
+                <a href="index.html" class="logo">
+                  <h4>Pixi<span>Lark</span></h4>
+                </a>
+                <!-- ***** Logo End ***** -->
+                <!-- ***** Menu Start ***** -->
+                <ul class="nav">
+                  <li class="scroll-to-section"><a href="index.html" class="active">Home</a></li>
+                  <li class="scroll-to-section"><a href="#about">About Us</a></li>
+                  <li class="scroll-to-section"><a href="#services">Services</a></li>
+                  <!-- <li class="scroll-to-section"><a href="#portfolio">Portfolio</a></li> -->
+                  <!-- <li class="scroll-to-section"><a href="#blog">Blog</a></li>  -->
+                  <li class="scroll-to-section"><a href="#contact">Message Us</a></li>
+                  <li class="scroll-to-section"><a href="gallery.html">Gallery</a></li>
+                  <li class="scroll-to-section">
+                    <div class="main-red-button"><a href="#contact">Contact Now</a></div>
+                  </li>
+                </ul>
+                <a class='menu-trigger'>
+                  <span>Menu</span>
+                </a>
+                <!-- ***** Menu End ***** -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+
+
+      <div class="row">
+        <div class="column1" id="column1">
+            
+        </div>
+        <div class="column2" id="column2">
+          
+        </div>
+        <div class="column3" id="column3">
+          
+        </div>
+        <div class="column4" id="column4">
+         
+        </div>
+      </div>
+      <script>
+        fetch('./gallery.json').then(function(data){
+          return data.json()
+        })
+        .then(function(data1){
+          console.log(data1.length)
+          var dataeach=Math.floor(data1.length/4);
+          console.log(dataeach)
+          let column1 = ``
+          for(let i=0;i<dataeach;i++){
+            column1=column1+`
+            <img src=${data1[i]['img']}/>
+            `
+          }
+          document.getElementById('column1').innerHTML=column1
+          return data1;
+        })
+        .then(function(data1){
+          console.log(data1.length)
+          var dataeach=Math.floor(data1.length/4);
+          console.log(dataeach)
+          let column1 = ``
+          for(let i=dataeach;i<dataeach*2;i++){
+            column1=column1+`
+            <img src=${data1[i]['img']}/>
+            `
+          }
+          document.getElementById('column2').innerHTML=column1
+          return data1;
+        })
+        .then(function(data1){
+          console.log(data1.length)
+          var dataeach=Math.floor(data1.length/4);
+          console.log(dataeach)
+          let column1 = ``
+          for(let i=dataeach*2;i<dataeach*3;i++){
+            column1=column1+`
+            <img src=${data1[i]['img']}/>
+            `
+          }
+          document.getElementById('column3').innerHTML=column1
+          return data1;
+        })
+        .then(function(data1){
+          console.log(data1.length)
+          var dataeach=Math.floor(data1.length/4);
+          console.log(dataeach)
+          let column1 = ``
+          for(let i=dataeach*3;i<data1.length;i++){
+            column1=column1+`
+            <img src=${data1[i]['img']}/>
+            `
+          }
+          document.getElementById('column4').innerHTML=column1
+          return data1;
+        })
+      </script>
+</body>
+</html>
